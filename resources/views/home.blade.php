@@ -1,11 +1,8 @@
-@extends('layout')
 
-@extends('footer')
-
-@extends('sidebar')
-
-@extends('topbar')
+@extends('base')
 
 @section('content')
-<h1>klçsjdalkjdlsajkd</h1>
+
+
+
 @endsection
