@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\NewUserRegisterController;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,6 +14,10 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+
+Route::get('/register', [NewUserRegisterController::class, 'index']);
+Route::post('/register', [NewUserRegisterController::class, 'create'])->name('register-user');
+
 Route::get('/login', function () {
     return view('login');
 });
@@ -23,4 +28,4 @@ Route::post('/login', function () {
 
 Route::get('/', function () {
     return view('home');
-});
+})->name('home');
