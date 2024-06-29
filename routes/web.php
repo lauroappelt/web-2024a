@@ -1,6 +1,8 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Http\Controllers\Auth\NewUserRegisterController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -18,14 +20,11 @@ use Illuminate\Support\Facades\Route;
 Route::get('/register', [NewUserRegisterController::class, 'index']);
 Route::post('/register', [NewUserRegisterController::class, 'create'])->name('register-user');
 
-Route::get('/login', function () {
-    return view('login');
-});
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
 
-Route::post('/login', function () {
-    
+Route::middleware(Authenticate::class)->group(function () {
+    Route::get('/', function () {
+        return view('home');
+    })->name('home');
 });
-
-Route::get('/', function () {
-    return view('home');
-})->name('home');
