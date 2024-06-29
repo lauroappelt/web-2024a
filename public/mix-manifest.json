@@ -6,6 +6,6 @@
     "/js/Chart.min.js": "/js/Chart.min.js",
     "/js/chart-area-demo.js": "/js/chart-area-demo.js",
     "/js/chart-pie-demo.js": "/js/chart-pie-demo.js",
-    "/css/all.min.css": "/css/all.min.css",
-    "/css/sb-admin-2.min.css": "/css/sb-admin-2.min.css"
+    "/js/jquery.dataTables.min.js": "/js/jquery.dataTables.min.js",
+    "/css/all.min.css": "/css/all.min.css"
 }

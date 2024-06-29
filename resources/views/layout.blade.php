@@ -20,6 +20,7 @@
     <!-- Custom styles for this template-->
     <link href="{{asset('css/sb-admin-2.min.css')}}" rel="stylesheet">
 
+    <link href="{{asset('css/dataTables.bootstrap4.min.css')}}" rel="stylesheet">
 </head>
 
 <body id="page-top">
@@ -82,27 +83,41 @@
     </div>
 
     <!-- Bootstrap core JavaScript-->
-    <script src="{{asset('js/jquery.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/jquery.min.js')}}"></script>
     
-    @push('asdsadsa')
-        <script src="{{asset('js/bootstrap.bundle.min.js')}}" type="text/javascript"></script>
+    <script src="{{asset('js/bootstrap.bundle.min.js')}}" ></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="{{asset('js/jquery-easing.min.js')}}" type="text/javascript"></script>
+    <!-- Core plugin JavaScript-->
+    <script src="{{asset('js/jquery-easing.min.js')}}" ></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="{{asset('js/sb-admin-2.min.js')}}" type="text/javascript"></script>
+    <!-- Custom scripts for all pages-->
+    <script src="{{asset('js/sb-admin-2.min.js')}}"></script>
 
-        <!-- Page level plugins -->
-        <script src="{{asset('js/Chart.min.js')}}" type="text/javascript"></script>
+    <!-- Page level plugins -->
+    <script src="{{asset('js/Chart.min.js')}}"></script>    
 
-        <!-- Page level custom scripts -->
-        <script src="{{asset('js/chart-area-demo.js')}}" type="text/javascript"></script>
-        
-        <script src="{{asset('js/chart-pie-demo.js')}}" type="text/javascript"></script>
-    @endpush
+    <script src="{{asset('js/jquery.dataTables.min.js')}}" ></script>
+    <script src="{{asset('js/dataTables.bootstrap4.min.js')}}" ></script>
+
+    <script>
+        $(document).ready(function() {
+            $('table').DataTable({
+                language: {
+                    paginate: {
+                        first:      "Primeiro",
+                        previous:   "Anterior",
+                        next:       "Próximo",
+                        last:       "Último"
+                    },
+                    lengthMenu:    "Mostrar _MENU_ itens",
+                    search:         "Buscar:",
+                    info:           "Mostrando _START_ &agrave; _END_ de _TOTAL_ itens",
+                },
+                
+            });
+        });
+    </script>
    
-
 </body>
 
 </html>
