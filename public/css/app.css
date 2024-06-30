@@ -1,6 +1,9 @@
 body {
     margin: 0px;
     padding: 0px;
+    font-family: "Roboto", sans-serif;
+    font-weight: 400;
+    font-style: normal;
 }
 
 .container-fluid {
@@ -116,9 +119,183 @@ body {
     background: #f3f4ee;
     box-shadow: 0px 0px 20px 4px rgba(0, 0, 0, 0.24);
     transition: left 0.3s ease;
+    overflow-y: auto;
 }
 
 .side-panel.open {
+    display: flex;
+    flex-direction: column;
     left: 4em;
-    padding-left: 2em;
+    padding-left: 2.8em;
+    padding-top: 1em;
+    border-top-right-radius: 10px;
+    border-bottom-right-radius: 10px;
+}
+
+.title {
+    font-size: 30px;
+    margin-bottom: 1em;
+}
+
+.form {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+}
+
+.input-text {
+    /* Estilos gerais */
+    font-family: sans-serif;
+    font-size: 16px;
+    padding: 10px;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid #ccc;
+    margin-top: 1em;
+    width: 100%;
+
+    /* Estilos do placeholder */
+    color: #000;
+    opacity: 0.7;
+}
+
+.input-text:focus {
+    /* Estilos quando o input recebe foco */
+    outline: none;
+    border-color: #616161;
+    transition: border-color 0.2s ease-in-out;
+}
+
+.input-text::placeholder {
+    color: #929191;
+}
+
+.input-cadastro {
+    background: #f3f4ee;
+}
+
+.input-button {
+    /* Estilos gerais */
+    font-family: sans-serif;
+    font-size: 16px;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 50px;
+    color: #f3f6f7;
+    background-color: #aeb3b6;
+    cursor: pointer;
+    margin-top: 3em;
+    width: 9em;
+    height: 3em;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+    width: 100%;
+
+    /* Estilos para hover */
+    &:hover {
+        color: #000;
+        background-color: #f3f6f7;
+    }
+}
+
+.separator-container {
+    display: flex;
+    align-items: center;
+    text-align: center;
+    margin: 20px 0;
+    width: 90%;
+    margin-block: 3em;
+}
+
+.separator-line {
+    flex: 1;
+    height: 1px;
+    background-color: #ccc;
+}
+
+.separator-text {
+    padding: 0 10px;
+    color: #666;
+    font-size: 14px;
+}
+
+.catastrofes-container {
+    width: 90%;
+}
+
+.catastrofe-item {
+    border: 1px solid #ccc;
+    border-radius: 10px;
+    padding: 10px;
+    margin-bottom: 1em;
+    font-size: 13px;
+    cursor: default;
+    box-shadow: 0px 9px 11px 0px rgba(0, 0, 0, 0.2);
+}
+
+.catastrofe-titulo {
+    font-weight: bold;
+    font-size: 15px;
+    margin-bottom: 5px;
+}
+
+.form-catastrofes-button-icons {
+    width: 100%;
+    display: flex;
+}
+
+.btn-catastrofes-icons {
+    width: 49%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 10px;
+    height: 30px;
+}
+
+.btn-confirmar-catastrofe {
+    color: green;
+    border: 1px solid green;
+    margin-right: 5px;
+    background: #00800030;
+
+    &:hover {
+        color: #fff;
+        background-color: green;
+    }
+}
+
+.btn-rejeitar-catastrofe {
+    color: red;
+    border: 1px solid red;
+    margin-left: 5px;
+    background: #ff000030;
+
+    &:hover {
+        color: #fff;
+        background-color: red;
+    }
+}
+
+.button-finalizar-container {
+    display: flex;
+    align-items: center;
+}
+
+.btn-finalizar {
+    display: flex;
+    align-items: center;
+    height: 25px;
+    width: 70px;
+    border-radius: 7px;
+    border: 1px solid;
+    margin-left: 4px;
+    font-size: 11px;
+    color: #f3f6f7;
+    background-color: #aeb3b6;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+
+    &:hover {
+        color: #000;
+        background-color: #f3f6f7;
+    }
 }

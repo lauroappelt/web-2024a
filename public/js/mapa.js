@@ -92,6 +92,9 @@ async function initMap() {
                 ...markerOptions,
                 position: clickPosition,
             });
+
+            document.getElementById("lat").value = clickPosition.lat();
+            document.getElementById("long").value = clickPosition.lng();
         });
     }
 
