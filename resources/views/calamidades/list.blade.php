@@ -27,16 +27,22 @@
                         <th>Data ocorrência</th>
                         <th>Data término</th>
                         <th>Status</th>
+                        @if ($user->is_admin)
+                            <th>Ação</th>
+                        @endif
                     </tr>
                 </thead>
-                <tfoot>
+                {{-- <tfoot>
                     <tr>
                         <th>Título</th>
                         <th>Data ocorrência</th>
                         <th>Data término</th>
                         <th>Status</th>
+                        @if ($user->is_admin)
+                            <th>Ação</th>
+                        @endif
                     </tr>
-                </tfoot>
+                </tfoot> --}}
                 <tbody>
                     @foreach ($calamidades as $item)
                     <tr>
@@ -44,6 +50,14 @@
                         <td>{{$item->date_start}}</td>
                         <td>{{$item->date_end}}</td>
                         <td>{{$item->status}}</td>
+                        @if ($user->is_admin)
+                            <th><a href="{{route('update-calamidades', ['id' => $item->id])}}" class="btn btn-info btn-icon-split">
+                                <span class="icon text-white-50">
+                                    <i class="fas fa-info-circle"></i>
+                                </span>
+                                <span class="text">Editar</span>
+                            </a></th>
+                        @endif
                     </tr>    
                     @endforeach
                 </tbody>

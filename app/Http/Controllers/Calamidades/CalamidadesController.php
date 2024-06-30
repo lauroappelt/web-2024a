@@ -12,17 +12,58 @@ class CalamidadesController
 {
     public function index(): View
     {
-        $calamidades = Calamidade::where('user_id', '=', Auth::user()->id)
-            ->get();
+        $user = Auth::user();
+
+        if ($user->is_admin) {
+            $calamidades = Calamidade::all();
+        } else {
+            $calamidades = Calamidade::where('user_id', '=', Auth::user()->id)->get();
+        }
 
         return view('calamidades.list', compact(
             'calamidades',
+            'user'
         ));
     }
 
     public function create(): View
     {
-        return view('calamidades.form');
+        return view('calamidades.create');
+    }
+
+    public function update(Request $request): View
+    {
+        $id = $request->route('id');
+
+        $calamidade = Calamidade::find($id);
+
+        return view('calamidades.update', compact(
+            'calamidade',
+        ));
+    }
+
+    public function save(Request $request)
+    {
+        try {
+            $request->validate([
+                'name' => 'required',
+                'description' => 'required',
+                'date_start' => 'required',
+                'status' => 'required'
+            ]);
+            
+            $calamidade = Calamidade::find($request->route('id'));
+
+            $calamidade->fill($request->all());
+
+            $calamidade->save();
+    
+            return redirect(
+                route('calamidades')
+            );
+        } catch (Throwable $th) {
+            dd($th->getMessage());
+        }
     }
 
     public function store(Request $request)

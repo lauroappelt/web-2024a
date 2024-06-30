@@ -34,4 +34,6 @@ Route::middleware(Authenticate::class)->group(function () {
     Route::get('/calamidades', [CalamidadesController::class ,'index'])->name('calamidades');
     Route::get('/calamidades/adcionar', [CalamidadesController::class ,'create'])->name('add-calamidades');
     Route::post('/calamidades/adcionar', [CalamidadesController::class ,'store'])->name('add-calamidades');
+    Route::get('/calamidades/editar/{id}', [CalamidadesController::class, 'update'])->name('update-calamidades');
+    Route::post('/calamidades/editar/{id}', [CalamidadesController::class, 'save'])->name('update-calamidades');
 });
