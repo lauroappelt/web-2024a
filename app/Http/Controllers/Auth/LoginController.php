@@ -6,6 +6,7 @@ use App\Http\Controllers\Controller;
 use Illuminate\Contracts\View\View;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Session;
 
 class LoginController extends Controller
 {
@@ -28,5 +29,12 @@ class LoginController extends Controller
         }
 
         return view('login');
+    }
+
+    public function logout()
+    {
+        Session::flush();
+
+        return redirect(route('home'));
     }
 }

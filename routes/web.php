@@ -22,6 +22,7 @@ Route::get('/register', [NewUserRegisterController::class, 'index']);
 Route::post('/register', [NewUserRegisterController::class, 'create'])->name('register-user');
 
 Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('login');
 Route::post('/login', [LoginController::class, 'login'])->name('login');
 
 Route::middleware(Authenticate::class)->group(function () {
@@ -31,4 +32,6 @@ Route::middleware(Authenticate::class)->group(function () {
 
 
     Route::get('/calamidades', [CalamidadesController::class ,'index'])->name('calamidades');
+    Route::get('/calamidades/adcionar', [CalamidadesController::class ,'create'])->name('add-calamidades');
+    Route::post('/calamidades/adcionar', [CalamidadesController::class ,'store'])->name('add-calamidades');
 });
