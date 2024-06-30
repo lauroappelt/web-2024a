@@ -18,6 +18,7 @@ return new class extends Migration
             $table->string('description');
             $table->date('date_start');
             $table->date('date_end')->nullable(true);
+            $table->string('tipo');
             $table->integer('user_id');
             $table->string('status');
         });

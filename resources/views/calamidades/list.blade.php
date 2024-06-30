@@ -26,6 +26,7 @@
                         <th>Título</th>
                         <th>Data ocorrência</th>
                         <th>Data término</th>
+                        <th>Tipo</th>
                         <th>Status</th>
                         @if ($user->is_admin)
                             <th>Ação</th>
@@ -49,6 +50,7 @@
                         <td>{{$item->name}}</td>
                         <td>{{$item->date_start}}</td>
                         <td>{{$item->date_end}}</td>
+                        <td>{{$item->tipo}}</td>
                         <td>{{$item->status}}</td>
                         @if ($user->is_admin)
                             <th><a href="{{route('update-calamidades', ['id' => $item->id])}}" class="btn btn-info btn-icon-split">

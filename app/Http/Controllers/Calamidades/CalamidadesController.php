@@ -28,7 +28,8 @@ class CalamidadesController
 
     public function create(): View
     {
-        return view('calamidades.create');
+        $tipos = Calamidade::listaTipos();
+        return view('calamidades.create', compact('tipos'));
     }
 
     public function update(Request $request): View
@@ -49,7 +50,8 @@ class CalamidadesController
                 'name' => 'required',
                 'description' => 'required',
                 'date_start' => 'required',
-                'status' => 'required'
+                'status' => 'required',
+                'tipo' => 'required',
             ]);
             
             $calamidade = Calamidade::find($request->route('id'));
@@ -72,13 +74,15 @@ class CalamidadesController
             $request->validate([
                 'name' => 'required',
                 'description' => 'required',
-                'date_start' => 'required'
+                'date_start' => 'required',
+                'tipo' => 'required'
             ]);
             
             $data = $request->only([
                 'name',
                 'description',
-                'date_start'
+                'date_start',
+                'tipo'
             ]);
 
             $data['user_id'] = Auth::user()->id;

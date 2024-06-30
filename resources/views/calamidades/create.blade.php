@@ -29,6 +29,15 @@
                         <label for="date_start" class="form-label">Data ocorrência:</label>
                         <input type="date" class="form-control" id="start" name="date_start" required>
                     </div>
+
+                    <div class="mb-3 col-3">
+                        <label for="" class="form-label">Tipo de calamidade:</label>
+                        <select class="form-control form-select form-select-lg mb-3" name="tipo" id="tipo" required>
+                            @foreach($tipos as $tipo)
+                                <option value="{{$tipo}}">{{$tipo}}</option>
+                            @endforeach
+                        </select>
+                   </div>
                     
                     <div class="row">
                         <div class="col-1">
