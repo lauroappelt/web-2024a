@@ -7,7 +7,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>WEB 2024</title>
+    <title>Sys Desastres</title>
 
     <!-- Custom fonts for this template-->
     <link href="{{asset('css/all.min.css')}}" rel="stylesheet" type="text/css">

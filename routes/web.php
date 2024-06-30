@@ -1,5 +1,9 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
+use App\Http\Controllers\Auth\NewUserRegisterController;
+use App\Http\Controllers\Calamidades\CalamidadesController;
+use App\Http\Middleware\Authenticate;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -13,14 +17,23 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
-Route::get('/login', function () {
-    return view('login');
-});
 
-Route::post('/login', function () {
-    
-});
+Route::get('/register', [NewUserRegisterController::class, 'index']);
+Route::post('/register', [NewUserRegisterController::class, 'create'])->name('register-user');
 
-Route::get('/', function () {
-    return view('home');
+Route::get('/login', [LoginController::class, 'index'])->name('login');
+Route::get('/logout', [LoginController::class, 'logout'])->name('login');
+Route::post('/login', [LoginController::class, 'login'])->name('login');
+
+Route::middleware(Authenticate::class)->group(function () {
+    Route::get('/', function () {
+        return view('home');
+    })->name('home');
+
+
+    Route::get('/calamidades', [CalamidadesController::class ,'index'])->name('calamidades');
+    Route::get('/calamidades/adcionar', [CalamidadesController::class ,'create'])->name('add-calamidades');
+    Route::post('/calamidades/adcionar', [CalamidadesController::class ,'store'])->name('add-calamidades');
+    Route::get('/calamidades/editar/{id}', [CalamidadesController::class, 'update'])->name('update-calamidades');
+    Route::post('/calamidades/editar/{id}', [CalamidadesController::class, 'save'])->name('update-calamidades');
 });
