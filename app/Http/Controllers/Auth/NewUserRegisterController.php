@@ -23,17 +23,16 @@ class NewUserRegisterController extends Controller
         try {
             $request->validate([
                 'name' => 'required',
-                'sure_name' => 'required',
                 'email' => 'required|email|unique:users',
                 'password' => 'required'
             ]);
     
             $user = new User([
-                'name' => sprintf('%s %s', $request->post('name'), $request->post('sure_name')),
+                'name' => sprintf('%s', $request->post('name')),
                 'email' => $request->post('email'),
                 'is_admin' => false,
                 'password' => Hash::make($request->post('password')),
-            ]);
+            ]); 
     
             $user->save();
     

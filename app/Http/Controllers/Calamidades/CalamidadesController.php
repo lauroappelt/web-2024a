@@ -10,20 +10,24 @@ use Throwable;
 
 class CalamidadesController
 {
-    public function index(): View
+    public function index()
     {
         $user = Auth::user();
 
-        if ($user->is_admin) {
-            $calamidades = Calamidade::all();
-        } else {
-            $calamidades = Calamidade::where('user_id', '=', Auth::user()->id)->get();
-        }
+        // if ($user->is_admin) {
+        //     $calamidades = Calamidade::all();
+        // } else {
+        //     $calamidades = Calamidade::where('user_id', '=', Auth::user()->id)->get();
+        // }
 
-        return view('calamidades.list', compact(
-            'calamidades',
-            'user'
-        ));
+        // return view('calamidades.list', compact(
+        //     'calamidades',
+        //     'user'
+        // ));
+
+        $calamidades = Calamidade::all();
+
+        return view('home', compact('calamidades'));
     }
 
     public function create(): View
@@ -61,7 +65,7 @@ class CalamidadesController
             $calamidade->save();
     
             return redirect(
-                route('calamidades')
+                route('home')
             );
         } catch (Throwable $th) {
             dd($th->getMessage());
@@ -93,7 +97,7 @@ class CalamidadesController
             $calamidade->save();
     
             return redirect(
-                route('calamidades')
+                route('home')
             );
         } catch (Throwable $th) {
             dd($th->getMessage());

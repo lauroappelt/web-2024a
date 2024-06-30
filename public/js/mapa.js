@@ -32,7 +32,7 @@
     d[l]
         ? console.warn(p + " only loads once. Ignoring:", g)
         : (d[l] = (f, ...n) => r.add(f) && u().then(() => d[l](f, ...n)));
-})({ key: "YOUR_API_KEY", v: "weekly" });
+})({ key: "AIzaSyBjjbhqsrHWXH_u-3hJmG8v6cs0vd7zsO8", v: "weekly" });
 
 // Instanciar o mapa e exibir em tela
 let map;
