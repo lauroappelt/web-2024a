@@ -51,11 +51,7 @@ class CalamidadesController
     {
         try {
             $request->validate([
-                'name' => 'required',
-                'description' => 'required',
-                'date_start' => 'required',
                 'status' => 'required',
-                'tipo' => 'required',
             ]);
             
             $calamidade = Calamidade::find($request->route('id'));
@@ -79,18 +75,23 @@ class CalamidadesController
                 'name' => 'required',
                 'description' => 'required',
                 'date_start' => 'required',
-                'tipo' => 'required'
+                'tipo' => 'required',
+                'lat' => 'required',
+                'long' => 'required'
             ]);
             
             $data = $request->only([
                 'name',
                 'description',
                 'date_start',
-                'tipo'
+                'tipo',
             ]);
 
             $data['user_id'] = Auth::user()->id;
             $data['status'] = 'PENDENTE'; 
+
+            $data['latitude'] = $request->post('lat');
+            $data['longitude'] = $request->post('long');
 
             $calamidade = new Calamidade($data);
     

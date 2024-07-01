@@ -70,12 +70,28 @@
                         <div class="catastrofe-tipo">Tipo: {{$calamidade->tipo}}</div>
                         <div class="catastrofe-data">Inicio: {{$calamidade->date_start}}</div>
                         <div class="catastrofe-data">Termino: {{$calamidade->date_end}}</div>
-                        <div class="catastrofe-descricao text-wrap">{{$calamidade->description}}</div>
-                        @if(auth()->user() && auth()->user()->is_admin )
-                        <form action="" class="form-catastrofes-button-icons">
-                            <button type="submit" class="btn-catastrofes-icons btn-confirmar-catastrofe"><ion-icon name="checkmark-outline"></ion-icon> Confirmar</button>
-                            <button type="submit" class="btn-catastrofes-icons btn-rejeitar-catastrofe"><ion-icon name="close-outline"></ion-icon> Rejeitar</button>
-                        </form>
+                        <div class="catastrofe-descricao">{{$calamidade->description}}</div>
+                        <div class="catastrofe-descricao">{{$calamidade->status}}</div>
+                        @if(auth()->user() && auth()->user()->is_admin && $calamidade->status == 'PENDENTE')
+                        <div class="row">
+                            <div class="col-6">
+                                <form action="{{route('update-calamidades', ['id' => $calamidade->id])}}" method="post" class="form-catastrofes-button-icons">
+                                    @csrf
+                                    <button type="submit" value="teste" class="btn-catastrofes-icons btn-confirmar-catastrofe"><ion-icon name="checkmark-outline"></ion-icon> Confirmar</button>
+                                    <input type="hidden" name="status" value="REGISTRADA">
+                                </form>
+                            </div>
+                            <div class="col-6">
+                                <form action="{{route('update-calamidades', ['id' => $calamidade->id])}}" method="post" class="form-catastrofes-button-icons">
+                                    @csrf
+                                    <button type="submit" class="btn-catastrofes-icons btn-rejeitar-catastrofe"><ion-icon name="close-outline"></ion-icon> Rejeitar</button>
+                                    <input type="hidden" name="status" value="RECUSADA">
+                                </form>
+                            </div>
+                            
+                        
+                        </div>
+                        
                         @endif
                     </div>
                 @endforeach
@@ -157,7 +173,7 @@
                     <option value="GUERRA">GUERRA</option>
                 </select>
                 <input type="text" id="lat" name="lat" placeholder="Latitude" class="input-text input-cadastro">
-                <input type="text" id="long" name="titulo" placeholder="Longitude" class="input-text input-cadastro">
+                <input type="text" id="long" name="long" placeholder="Longitude" class="input-text input-cadastro">
                 <input type="submit" class="input-button" value="Cadastrar">
             </form>
         </div>

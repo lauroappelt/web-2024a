@@ -20,6 +20,8 @@ return new class extends Migration
             $table->date('date_end')->nullable(true);
             $table->string('tipo');
             $table->integer('user_id');
+            $table->string('latitude');
+            $table->string('longitude');
             $table->string('status');
         });
     }

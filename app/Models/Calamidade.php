@@ -33,6 +33,8 @@ class Calamidade extends Model
         'tipo',
         'user_id',
         'status',
+        'latitude',
+        'longitude'
     ];
 
     public static function listaStatus()
