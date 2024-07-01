@@ -179,3 +179,17 @@
         </div>
     </div>
 @endsection
+
+<script>
+
+const coordinates = [
+    @foreach($calamidades as $calamidade)
+    { lat: {{$calamidade->latitude}} , lng: {{$calamidade->longitude}} },
+    @endforeach
+];
+
+setTimeout(() => {
+    initMap();
+}, 1000);
+
+</script>

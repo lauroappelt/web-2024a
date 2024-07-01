@@ -38,6 +38,7 @@
 let map;
 let currentMarker = null; // Variável para armazenar o marcador atual
 
+
 async function initMap() {
     let lat = -34.397;
     let lng = 150.644;
@@ -76,6 +77,14 @@ async function initMap() {
             title: "Current location",
         };
 
+         // Adiciona marcadores para cada coordenada na lista
+        coordinates.forEach(coord => {
+            new AdvancedMarkerElement({
+                ...markerOptions,
+                position: coord,
+            });
+        });
+
         // Adiciona o marcador inicial
         currentMarker = new AdvancedMarkerElement(markerOptions);
 
@@ -104,6 +113,3 @@ async function initMap() {
 
     navigator.geolocation.getCurrentPosition(success, error, options);
 }
-
-initMap();
-// Final mapa
