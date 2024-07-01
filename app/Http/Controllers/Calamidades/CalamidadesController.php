@@ -14,18 +14,15 @@ class CalamidadesController
     {
         $user = Auth::user();
 
-        // if ($user->is_admin) {
-        //     $calamidades = Calamidade::all();
-        // } else {
-        //     $calamidades = Calamidade::where('user_id', '=', Auth::user()->id)->get();
-        // }
+        if ($user != null && $user->is_admin) {
+            $calamidades = Calamidade::all();
+        } else {
+            $calamidades = Calamidade::where('status', '=', 'REGISTRADA')
+            ->whereNull('date_end')
+            ->get();
+        }
 
-        // return view('calamidades.list', compact(
-        //     'calamidades',
-        //     'user'
-        // ));
-
-        $calamidades = Calamidade::all();
+        // $calamidades = Calamidade::all();
 
         return view('home', compact('calamidades'));
     }
@@ -50,13 +47,16 @@ class CalamidadesController
     public function save(Request $request)
     {
         try {
-            $request->validate([
-                'status' => 'required',
-            ]);
-            
+    
+            $data = $request->all();
+
+            if ($request->post('termino')) {
+                $data['date_end'] = date('Y-m-d');
+            }
+
             $calamidade = Calamidade::find($request->route('id'));
 
-            $calamidade->fill($request->all());
+            $calamidade->fill($data);
 
             $calamidade->save();
     

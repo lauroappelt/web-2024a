@@ -69,7 +69,21 @@
                         <div class="catastrofe-titulo">{{$calamidade->name}}</div>
                         <div class="catastrofe-tipo">Tipo: {{$calamidade->tipo}}</div>
                         <div class="catastrofe-data">Inicio: {{$calamidade->date_start}}</div>
-                        <div class="catastrofe-data">Termino: {{$calamidade->date_end}}</div>
+                        @if($calamidade->date_end == null && $calamidade->status == 'REGISTRADA')
+                        <div class="catastrofe-data button-finalizar-container">
+                            Termino: -
+                            @if( auth()->user() && auth()->user()->is_admin)
+                                <form action="{{route('update-calamidades', ['id' => $calamidade->id])}}" method="post">
+                                    @csrf
+                                    <button type="submit" class="btn-finalizar"><ion-icon name="checkmark-outline"></ion-icon> Finalizar</button>
+                                    <input type="hidden" name="termino" value="termino">
+                                </form>
+                            @endif
+                            
+                        </div>
+                        @else
+                            <div class="catastrofe-data">Termino: {{$calamidade->date_end}}</div>
+                        @endif
                         <div class="catastrofe-descricao">{{$calamidade->description}}</div>
                         <div class="catastrofe-descricao">{{$calamidade->status}}</div>
                         @if(auth()->user() && auth()->user()->is_admin && $calamidade->status == 'PENDENTE')
@@ -172,8 +186,8 @@
                     <option value="COLAPSO_INFRA">COLAPSO INFRA</option>
                     <option value="GUERRA">GUERRA</option>
                 </select>
-                <input type="text" id="lat" name="lat" placeholder="Latitude" class="input-text input-cadastro">
-                <input type="text" id="long" name="long" placeholder="Longitude" class="input-text input-cadastro">
+                <input type="hidden" id="lat" name="lat" placeholder="Latitude" class="input-text input-cadastro">
+                <input type="hidden" id="long" name="long" placeholder="Longitude" class="input-text input-cadastro">
                 <input type="submit" class="input-button" value="Cadastrar">
             </form>
         </div>
@@ -184,7 +198,7 @@
 
 const coordinates = [
     @foreach($calamidades as $calamidade)
-    { lat: {{$calamidade->latitude}} , lng: {{$calamidade->longitude}} },
+    { lat: {{$calamidade->latitude}} , lng: {{$calamidade->longitude}}, title: "{{$calamidade->name}}" },
     @endforeach
 ];
 

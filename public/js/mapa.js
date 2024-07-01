@@ -82,6 +82,7 @@ async function initMap() {
             new AdvancedMarkerElement({
                 ...markerOptions,
                 position: coord,
+                title: coord.title,
             });
         });
 
